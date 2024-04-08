@@ -1564,7 +1564,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer(MSG_ALRT)
 
     if query.data == "purchase":
-    buttons = [
+    buttons = [[
         [InlineKeyboardButton('💵 Pay via UPI ID', callback_data='upi_info')],
         [InlineKeyboardButton('📸 Scan QR Code', callback_data='qr_info')],
         [InlineKeyboardButton('⇋ Back', callback_data='premium_info')]
