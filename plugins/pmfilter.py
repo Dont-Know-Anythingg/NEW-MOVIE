@@ -1563,20 +1563,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
         await query.answer(MSG_ALRT)
 
-    elif query.data == "purchase":
-        buttons = [[
-            InlineKeyboardButton('💵 ᴘᴀʏ ᴠɪᴀ ᴜᴘɪ ɪᴅ 💵', callback_data='upi_info')
-        ],[
-            InlineKeyboardButton('📸 ꜱᴄᴀɴ ǫʀ ᴄᴏᴅᴇ 📸', callback_data='qr_info')
-        ],[
-            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='premium_info')
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
-            text=script.PURCHASE_TXT.format(query.from_user.mention),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
+    if query.data == "purchase":
+    buttons = [
+        [InlineKeyboardButton('💵 Pay via UPI ID', callback_data='upi_info')],
+        [InlineKeyboardButton('📸 Scan QR Code', callback_data='qr_info')],
+        [InlineKeyboardButton('⇋ Back', callback_data='premium_info')]
+    ]
+    
+    reply_markup = InlineKeyboardMarkup(buttons)
+    
+    await query.message.edit_text(
+        text=script.PURCHASE_TXT.format(query.from_user.mention),
+        reply_markup=reply_markup,
+        parse_mode=ParseMode.HTML
+    )
 
     elif query.data == "upi_info":
         buttons = [[
